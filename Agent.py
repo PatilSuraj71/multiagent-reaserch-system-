@@ -13,7 +13,7 @@ llm=ChatGroq(model="llama-3.3-70b-versatile",
 
 llm1=ChatGoogleGenerativeAI(
     model="gemini-3.6-flash",
-    google_api_key=os.getenv("key")
+    google_api_key=os.getenv("KEY")
 )
 
 
