@@ -6,15 +6,20 @@ from langchain_groq import ChatGroq
 from langchain.agents import create_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 llm=ChatGroq(model="llama-3.3-70b-versatile",
              api_key=os.getenv("groq_key"))
 
+llm1=ChatGoogleGenerativeAI(
+    model="gemini-3.6-flash",
+    google_api_key=os.getenv("key")
+)
 
 
 def build_search_agent():
     return create_agent(
-        model=llm,
+        model=llm1,
         tools=[Web_search]
     )
 
@@ -41,7 +46,7 @@ Structure the report as:
 Be detailed, factual and professional."""),
 ])
 
-writer_chain = writer_prompt | llm | StrOutputParser()
+writer_chain = writer_prompt | llm1 | StrOutputParser()
 
 #critic_chain
 
