@@ -7,7 +7,6 @@ from langchain.agents import create_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_groq import ChatGroq
 llm=ChatGroq(model="llama-3.3-70b-versatile",
              api_key=os.getenv("groq_key"))
 
