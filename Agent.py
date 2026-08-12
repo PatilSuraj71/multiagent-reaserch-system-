@@ -6,6 +6,7 @@ from langchain_groq import ChatGroq
 from langchain.agents import create_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 
 llm=ChatGroq(model="llama-3.3-70b-versatile",
@@ -15,12 +16,11 @@ from langchain_openai import ChatOpenAI
 
 
 
-llm1= ChatOpenAI(
-    model="nvidia/nemotron-3-ultra-550b-a55b:free",
-    api_key=os.getenv("Nividia_key"),
-    base_url="https://openrouter.ai/api/v1"
-)
+llm1= ChatGoogleGenerativeAI(
+    model='gemini-3.5-flash',
+    google_api_key=os.getenv("key"),
 
+)
 
 def build_search_agent():
     return create_agent(
