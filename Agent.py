@@ -18,16 +18,16 @@ llm = ChatOpenAI(
 
 
 
-from langchain_openai import ChatOpenAI
 
 
 
-llm1= ChatOpenAI(
-    model="nvidia/nemotron-3-ultra-550b-a55b:free",
-    api_key=os.getenv("Nividia_key"),
-    base_url="https://openrouter.ai/api/v1"
-)
 
+from langchain_groq import ChatGroq
+
+
+import os
+llm1=ChatGroq(model="llama-3.3-70b-versatile",
+             api_key=os.getenv("groq_key"))
 
 def build_search_agent():
     return create_agent(
