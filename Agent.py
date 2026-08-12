@@ -10,10 +10,14 @@ from langchain_openai import ChatOpenAI
 
 
 
+
+load_dotenv()
+
 llm = ChatOpenAI(
-    model="google/gemma-4-26b-a4b-it:free",
+    model="nvidia/nemotron-3-ultra-550b-a55b:free",
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("gamma_key"),
+    api_key=os.getenv("nividia_key"),
+    temperature=0.2,
 )
 
 
