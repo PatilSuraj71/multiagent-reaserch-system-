@@ -10,9 +10,7 @@ import streamlit as st
 
 from Agent import build_reader_agent, build_search_agent, writer_chain, critic_chain
 
-# ==========================================================================
-# PAGE CONFIG
-# ==========================================================================
+
 st.set_page_config(
     page_title="Multi-Agent Research System",
     page_icon="🧠",
@@ -27,9 +25,7 @@ STEPS = [
     {"key": "critique", "label": "Critique", "icon": "🧐", "desc": "Reviewing draft"},
 ]
 
-# ==========================================================================
-# CSS
-# ==========================================================================
+
 st.markdown(
     """
     <style>
@@ -127,9 +123,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ==========================================================================
-# SESSION STATE
-# ==========================================================================
+
 defaults = {
     "history": [],
     "state": None,
@@ -143,9 +137,6 @@ for k, v in defaults.items():
         st.session_state[k] = v
 
 
-# ==========================================================================
-# HELPERS
-# ==========================================================================
 def render_stepper(current_index: int, total_steps: int = len(STEPS)) -> str:
     """current_index: -1 = nothing started, 0..3 = that step active, 4 = all done"""
     html = ['<div class="stepper">']
@@ -200,9 +191,7 @@ EXAMPLE_TOPICS = [
 ]
 
 
-# ==========================================================================
-# SIDEBAR
-# ==========================================================================
+
 with st.sidebar:
     st.markdown("## 🧠 Research Agents")
     st.caption("Multi-agent pipeline · Search → Read → Write → Critique")
@@ -240,9 +229,7 @@ with st.sidebar:
     st.caption("Select 2 runs above to compare them side by side.")
 
 
-# ==========================================================================
-# HERO
-# ==========================================================================
+
 st.markdown(
     """
     <div class="hero">
@@ -303,9 +290,7 @@ if not st.session_state.running:
     stepper_placeholder.markdown(render_stepper(-1), unsafe_allow_html=True)
 
 
-# ==========================================================================
-# PIPELINE EXECUTION
-# ==========================================================================
+
 def run_pipeline_with_ui(topic: str) -> dict:
     state = {"topic": topic, "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")}
     st.session_state.log_lines = []
@@ -416,9 +401,7 @@ if run_clicked:
         st.rerun()
 
 
-# ==========================================================================
-# COMPARE MODE
-# ==========================================================================
+
 if len(st.session_state.compare_ids) == 2:
     st.divider()
     st.subheader("⚖️ Compare Runs")
@@ -438,9 +421,6 @@ if len(st.session_state.compare_ids) == 2:
     st.divider()
 
 
-# ==========================================================================
-# RESULTS
-# ==========================================================================
 state = st.session_state.state
 
 if state and not st.session_state.running:
