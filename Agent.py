@@ -6,7 +6,8 @@ from langchain.agents import create_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
-from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
+
 
 from tools import Web_search, fetch_webpage
 
@@ -18,16 +19,19 @@ load_dotenv()
 llm = ChatOpenAI(
     model="nvidia/nemotron-3-ultra-550b-a55b:free",
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("Nividia_key"),
+    api_key=os.getenv("openrouter_key"),
 )
 
 
 
 
-llm1 = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    api_key=os.getenv("groq_key"),
+
+llm1 = ChatOpenAI(
+    model="nex-agi/nex-n2.5-pro:free",
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("openrouter_key"),
 )
+
 
 
 
